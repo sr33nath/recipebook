@@ -63,6 +63,6 @@ Copy the IP address from the output of the above command
 
 Paste the IP address in your browser. You will be able to see the landing page of the app.
 
-##App deployment architecture
+## App deployment architecture
 
 ![App architecture](https://github.com/sreenathisapro/recipebook/blob/develop/kube/recipebook-deployment.jpg?raw=true)
