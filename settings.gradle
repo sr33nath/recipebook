@@ -1,0 +1,5 @@
+rootProject.name = 'recipebook'
+
+include 'library'
+include 'api'
+include 'ui'

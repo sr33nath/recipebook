@@ -1,2 +1,2 @@
-# recipebook
+# Recipebook
 Home to all the recipes

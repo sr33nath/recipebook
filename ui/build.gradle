@@ -1,0 +1,31 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.sreenathofficial.recipebook'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.webjars:bootstrap:5.1.0'
+    implementation 'org.webjars:jquery:3.6.0'
+    implementation 'org.webjars:font-awesome:5.15.3'
+    implementation 'org.webjars.npm:bootstrap-icons:1.5.0'
+    implementation 'org.webjars:webjars-locator:0.41'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    enabled = true
+}
+
+test {
+    useJUnitPlatform()
+}
