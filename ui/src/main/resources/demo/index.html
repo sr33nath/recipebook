@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Spring Data Rest + jQuery + Bootstrap Demo</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap-utilities.min.css" />
+    <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&display=swap">
+
+    <style type="text/css">
+        body{
+            background:#dcdcdc;
+        }
+
+        .icon-container {
+            border-radius: 7px
+        }
+
+        .stars i {
+            margin-right: 2px;
+            color: red;
+            font-size: 13px
+        }
+
+        .rating-number {
+            font-size: 20px;
+            font-weight: 700;
+            /*margin-bottom: 2px*/
+        }
+
+        .number-ratings {
+            font-size: 12px
+        }
+
+        .listing-title {
+            margin-bottom: -7px
+        }
+
+        .progress-bar {
+            background: #ddd
+        }
+
+        .progress {
+            height: 16px
+        }
+
+        .tags span {
+            margin-right: 9px;
+            border: 1px solid #555;
+            padding-right: 9px;
+            padding-left: 9px;
+            padding-top: 2px;
+            padding-bottom: 4px;
+            border-radius: 7px;
+            background-color: #aaa;
+            color: #fff
+        }
+
+        .logo-holder{
+          text-align:center;
+        }
+
+        .logo-4 h3 {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 32px;
+            font-family: 'Lobster', cursive;
+            text-shadow: 4px 4px 4px #aaa;
+        }
+
+        /* From search page */
+.widget-26 {
+  color: #3c4142;
+  font-weight: 400;
+}
+
+.widget-26 tr:first-child td {
+  border: 0;
+}
+
+.widget-26 .widget-26-job-emp-img img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.widget-26 .widget-26-job-title {
+  min-width: 200px;
+}
+
+.widget-26 .widget-26-job-title a {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #3c4142;
+  line-height: 1.5;
+}
+
+.widget-26 .widget-26-job-title a:hover {
+  color: #68CBD7;
+  text-decoration: none;
+}
+
+.widget-26 .widget-26-job-title .employer-name {
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #3c4142;
+  font-size: 0.8125rem;
+  color: #3c4142;
+}
+
+.widget-26 .widget-26-job-title .employer-name:hover {
+  color: #68CBD7;
+  text-decoration: none;
+}
+
+.widget-26 .widget-26-job-title .time {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.widget-26 .widget-26-job-info {
+  min-width: 100px;
+  font-weight: 400;
+}
+
+.widget-26 .widget-26-job-info p {
+  line-height: 1.5;
+  color: #3c4142;
+  font-size: 0.8125rem;
+}
+
+.widget-26 .widget-26-job-info .location {
+  color: #3c4142;
+}
+
+.widget-26 .widget-26-job-salary {
+  min-width: 70px;
+  font-weight: 400;
+  color: #3c4142;
+  font-size: 0.8125rem;
+}
+
+.widget-26 .widget-26-job-category {
+  padding: .5rem;
+  display: inline-flex;
+  white-space: nowrap;
+  border-radius: 15px;
+}
+
+.widget-26 .widget-26-job-category .indicator {
+  width: 13px;
+  height: 13px;
+  margin-right: .5rem;
+  float: left;
+  border-radius: 50%;
+}
+
+.widget-26 .widget-26-job-category span {
+  font-size: 0.8125rem;
+  color: #3c4142;
+  font-weight: 600;
+}
+
+.widget-26 .widget-26-job-starred svg {
+  width: 20px;
+  height: 20px;
+  color: #fd8b2c;
+}
+
+.widget-26 .widget-26-job-starred svg.starred {
+  fill: #fd8b2c;
+}
+.bg-soft-base {
+  background-color: #e1f5f7;
+}
+.bg-soft-warning {
+    background-color: #fff4e1;
+}
+.bg-soft-success {
+    background-color: #d1f6f2;
+}
+.bg-soft-danger {
+    background-color: #fedce0;
+}
+.bg-soft-info {
+    background-color: #d7efff;
+}
+
+
+.search-form {
+  /*width: 80%;*/
+  margin: 0 auto;
+  /*margin-top: 1rem;*/
+}
+
+.search-form input {
+  height: 100%;
+  /*background: transparent;*/
+  /*border: 0;*/
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  height: 100%;
+  font-size: 1rem;
+}
+
+.search-form select {
+  /*background: transparent;*/
+  /*border: 0;*/
+  padding: 1rem;
+  height: 100%;
+  font-size: 1rem;
+}
+
+.search-form select:focus {
+  border: 0;
+}
+
+.search-form button {
+  height: 100%;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.search-form button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.search-body {
+  margin-bottom: 1.5rem;
+}
+
+.search-body .search-filters .filter-list {
+  margin-bottom: 1.3rem;
+}
+
+.search-body .search-filters .filter-list .title {
+  color: #3c4142;
+  margin-bottom: 1rem;
+}
+
+.search-body .search-filters .filter-list .filter-text {
+  color: #727686;
+}
+
+.search-body .search-result .result-header {
+  margin-bottom: 2rem;
+}
+
+.search-body .search-result .result-header .records {
+  color: #3c4142;
+}
+
+.search-body .search-result .result-header .result-actions {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-body .search-result .result-header .result-actions .result-sorting {
+  display: flex;
+  align-items: center;
+}
+
+.search-body .search-result .result-header .result-actions .result-sorting span {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+}
+
+.search-body .search-result .result-header .result-actions .result-sorting select {
+  color: #68CBD7;
+}
+
+.search-body .search-result .result-header .result-actions .result-sorting select option {
+  color: #3c4142;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .search-body .search-filters {
+    display: flex;
+  }
+  .search-body .search-filters .filter-list {
+    margin-right: 1rem;
+  }
+}
+
+.card-margin {
+    margin-bottom: 1.875rem;
+}
+
+@media (min-width: 992px){
+.col-lg-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+}
+}
+
+.card-margin {
+    margin-bottom: 1.875rem;
+}
+.card {
+    border: 0;
+    box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    /*border: 1px solid #e6e4e9;*/
+    /*border-radius: 8px;*/
+}
+    </style>
+</head>
+<body>
+<section class="header-main border-bottom bg-white">
+    <div class="container-fluid">
+        <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
+            <div class="col-md-2">
+                <div class="logo-holder logo-4">
+                    <a href="#">
+                        <h3>Recipebook</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card search-form">
+                    <div class="card-body p-0">
+                        <form id="search-form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row no-gutters">
+                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0 form-floating">
+                                            <select class="form-select" id="searchParam">
+                                                <option value="text">Text</option>
+                                                <option value="ingredients">Ingredients</option>
+                                                <option value="instructions">Instructions</option>
+                                                <option value="createdBefore">Created Before</option>
+                                                <option value="createdAfter">Created After</option>
+                                                <option value="vegetarian">Vegetarian</option>
+                                            </select>
+                                            <label for="searchParam">Search Recipe</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                                            <input type="text" placeholder="Type here" class="form-control" id="search" name="search">
+                                        </div>
+                                        <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                            <button type="button" id="searchBtn" class="btn btn-outline-secondary">
+                                                <i class="bi bi-search" style="font-size: 1.5rem;"></i>
+                                            </button>
+                                            <input type="hidden" id="searchUrl" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="addButton"
+                        class="btn btn-primary">
+                    New Recipe
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <div class="row search-body">
+                        <div class="col-lg-12">
+                            <div class="search-result">
+                                <div class="result-header">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="records">Showing: <b id="resultRange">0</b> of <b id="totalResults">0</b> results</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-body" id="recipeList" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="d-flex justify-content-center">
+                        <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelHeading">New Recipe</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="recipeForm" name="recipeForm" class="form-horizontal">
+                    <input type="hidden" name="action" id="action">
+                    <input type="hidden" name="submitUrl" id="submitUrl">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="" maxlength="50" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-12">
+                            <textarea id="desc" name="desc" required="" placeholder="Short description of the recipe" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="portion" class="col-sm-2 control-label">Portion Size</label>
+                        <div class="col-sm-1">
+                            <input type="text" id="portion" name="portion" required="" placeholder="Number of people this recipe can serve" class="form-control">
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input class="form-check-input mt-0" id="vegetarian" type="checkbox" aria-label="Check if recipe is vegetarian">
+                        </div>
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Is the recipe vegetarian</span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="instructions" class="col-sm-2 control-label">Instructions</label>
+                        <div class="col-sm-12">
+                            <textarea id="instructions" name="instructions" required="" placeholder="Step by step guide on how to prepare the dish" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card col-sm-6">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            Ingredients
+                            <button type="button" id="addIngredientRow" class="btn btn-outline-secondary">
+                                <i class="bi bi-plus-circle text-success fw-bold"></i>
+                            </button>
+                        </div>
+                        <div class="card-body" id="ingredients">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveBtn" value="create">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="input-group d-none" id="ingredient[x]" aria-hidden="true">
+    <input type="text" id="ingredient[x].name" name="ingredientName" class="form-control" placeholder="Name">
+    <input type="text" id="ingredient[x].amount" name="ingredientAmount" class="form-control" placeholder="Quantity">
+    <input type="text" id="ingredient[x].uom" name="ingredientUom" class="form-control" placeholder="UOM">
+    <button type="button" id="ingredient[x].delete" class="btn btn-outline-secondary">
+        <i class="bi bi-x-circle text-danger fw-bold"></i>
+    </button>
+</div>
+
+<div class="d-flex justify-content-center d-none" id="loading">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+</body>
+
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        recipeList('/api/recipes');
+
+        $('#addButton').click(function () {
+            resetRecipeForm();
+            $('#modelHeading').html("New Recipe");
+            $('#ajaxModel').modal('show');
+        });
+
+        $('#addIngredientRow').click(function(){
+            addIngredientRow();
+            return false;
+        });
+
+        $('#saveBtn').click(function () {
+            var action = $('#action').val();
+            if(action == 'create'){
+                createRecipe($('#submitUrl').val());
+            }else{
+                updateRecipe($('#submitUrl').val());
+            }
+        });
+
+        $('#searchParam').on('change', function() {
+
+            $('#search').prop( 'disabled', false );
+            $('#searchBtn').prop( 'disabled', false );
+            $('#search').val('');
+
+            var searchType = $(this).find(":selected").val();
+            if(searchType == 'text' | searchType == 'instructions' | searchType == 'ingredients' | searchType == 'portion'){
+                $('#search').attr('placeholder', 'Type here');
+            }else if(searchType == 'vegetarian'){
+                $('#search').prop( 'disabled', true );
+                $('#searchBtn').prop( 'disabled', true );
+                $('#search').attr('placeholder', '');
+            } else {
+                $('#search').attr('placeholder', 'dd-MM-yyyy HH:mm');
+            }
+        });
+
+        $('#searchBtn').click(function () {
+            var searchStr = encodeURIComponent($('#search').val());
+            var searchType = $('#searchParam').find(":selected").val();
+            var searchResourceUrl = '/api/recipes/search/findAll?text=';
+
+            if(searchType == 'instructions'){
+                searchResourceUrl='/api/recipes/search/findAllByInstructions?instructions=';
+            } else if(searchType == 'ingredients'){
+                searchResourceUrl='/api/recipes/search/findAllByIngredientsName?ingredientName=';
+            } else if(searchType == 'portion'){
+                searchResourceUrl='/api/recipes/search/findAllByPortion?portion=';
+            } else if(searchType == 'createdBefore'){
+                searchResourceUrl='/api/recipes/search/findAllByCreatedDateBefore?date=';
+            } else if(searchType == 'createdAfter'){
+                searchResourceUrl='/api/recipes/search/findAllByCreatedDateAfter?date=';
+            }
+
+            recipeList(searchResourceUrl+searchStr);
+
+            console.log(searchResourceUrl+searchStr);
+
+            $('#loading').clone().removeClass('d-none').appendTo('#recipeList');
+        });
+
+    });
+
+    function addIngredientRow(ingredient){
+        var currentIngredientCount = $('#ingredients .input-group').length;
+
+        $('div[id="ingredient[x]"]').clone().appendTo('#ingredients');
+
+        //Change name in new inputs
+        var inputGroupDiv = $('#ingredients .input-group').last();
+        inputGroupDiv.removeClass('d-none');
+        var inputs = inputGroupDiv.find('input');
+        var button = inputGroupDiv.find('button');
+        inputGroupDiv.attr("id",function(i,oldVal) {
+            return oldVal.replace(/x/,function(m){
+                return currentIngredientCount;
+            });
+        });
+        inputs.attr("id",function(i,oldVal) {
+            return oldVal.replace(/x/,function(m){
+                return currentIngredientCount;
+            });
+        });
+        button.attr("id",function(i,oldVal) {
+            return oldVal.replace(/x/,function(m){
+                return currentIngredientCount;
+            });
+        });
+
+        button.click(function(){
+            $('div[id="ingredient['+currentIngredientCount+']"]').remove();
+            return false;
+        });
+
+        if(ingredient){
+            var ingNameField = inputGroupDiv.find('input[name="ingredientName"]').first();
+            var ingAmtField = inputGroupDiv.find('input[name="ingredientAmount"]').first();
+            var ingUomField = inputGroupDiv.find('input[name="ingredientUom"]').first();
+            if(ingNameField){ ingNameField.val(ingredient.name) }
+            if(ingAmtField){ ingAmtField.val(ingredient.amount) }
+            if(ingUomField){ ingUomField.val(ingredient.uom) }
+        }
+    }
+
+    function resetRecipeForm(){
+            $('#action').val('create');
+            $('#modelHeading').val('New Recipe');
+            $('#submitUrl').val('/api/recipes');
+            $('#title').val('');
+            $('#desc').val('');
+            $('#portion').val('');
+            $('#vegetarian').prop('checked', false);
+            $('#instructions').val('');
+            $('#ingredients').empty();
+    }
+
+    function fillRecipeForm(recipe){
+            $('#action').val('update');
+            $('#submitUrl').val(recipe._links.self.href);
+            $('#title').val(recipe.title);
+            $('#desc').val(recipe.desc);
+            $('#portion').val(recipe.portion);
+            $('#vegetarian').prop('checked', recipe.vegetarian);
+            $('#instructions').val(recipe.instructions);
+            $('#ingredients').empty();
+
+            $.each(recipe.ingredients, function(index, ingredient){
+                addIngredientRow(ingredient);
+            });
+    }
+
+    function getRecipeFormData(){
+
+        var recipe = {};
+        recipe.title = $('#title').val();
+        recipe.desc = $('#desc').val();
+        recipe.portion = $('#portion').val();
+        recipe.vegetarian = $('#vegetarian').prop('checked');
+        recipe.instructions = $('#instructions').val();
+        recipe.ingredients = [];
+        var ingredientElems = $('#ingredients .input-group');
+
+        $.each(ingredientElems, function(index, ingredientElem){
+            var ingredient = {};
+            ingredient.name = $(ingredientElem).find('input[name="ingredientName"]').first().val();
+            ingredient.amount = $(ingredientElem).find('input[name="ingredientAmount"]').first().val();
+            ingredient.uom = $(ingredientElem).find('input[name="ingredientUom"]').first().val();
+            recipe.ingredients.push(ingredient);
+        });
+
+        console.log(recipe);
+
+        return recipe;
+    }
+
+    //Create recipe
+    function createRecipe(recipeResource) {
+     // Call Web API to update the recipe
+      $.ajax({
+        url: recipeResource,
+        type: 'POST',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(getRecipeFormData()),
+        success: function (recipe) {
+          console.log(recipe);
+        },
+        error: function (request, message, error) {
+          handleException(request, message, error);
+        }
+      });
+    }
+
+    //Edit recipe
+    function editRecipe(recipeResource) {
+      // Call Web API to pop up recipe edit modal
+      $('#modelHeading').html("Edit Recipe");
+      $('#ajaxModel').modal('show');
+
+      $.ajax({
+        url: recipeResource,
+        type: 'GET',
+        dataType: 'json',
+        success: function (recipe) {
+          fillRecipeForm(recipe);
+        },
+        error: function (request, message, error) {
+          handleException(request, message, error);
+        }
+      });
+    }
+
+    //Update recipe
+    function updateRecipe(recipeResource) {
+     // Call Web API to update the recipe
+      $.ajax({
+        url: recipeResource,
+        type: 'PUT',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(getRecipeFormData()),
+        success: function (recipe) {
+          console.log(recipe);
+        },
+        error: function (request, message, error) {
+          handleException(request, message, error);
+        }
+      });
+    }
+
+    //Delete recipe
+    function deleteRecipe(recipeResource) {
+      //Call Web API to delete a recipe
+      $.ajax({
+        url: recipeResource,
+        type: 'DELETE',
+        dataType: 'json',
+        success: function (recipe) {
+          console.log(recipe);
+        },
+        error: function (request, message, error) {
+          handleException(request, message, error);
+        }
+      });
+    }
+
+    //Get all recipes
+    function recipeList(searchResource) {
+      // Call Web API to get a list of Products
+      $('searchUrl').val(searchResource);
+      $.ajax({
+        url: searchResource,
+        type: 'GET',
+        dataType: 'json',
+        success: function (pagedResp) {
+          console.log(pagedResp);
+          recipeListSuccess(pagedResp);
+        },
+        error: function (request, message, error) {
+          handleException(request, message, error);
+        }
+      });
+    }
+
+    function recipeListSuccess(pagedResp) {
+
+      $("#recipeList").empty();
+
+      var totalRecipes = pagedResp.page.totalElements;
+      var pageNumber = pagedResp.page.number;
+      var pageSize = pagedResp.page.size;
+
+      var startElemPos = (pageNumber*pageSize)+1;
+      var endElemPos = (pageNumber*pageSize)+pageSize;
+
+      $('#resultRange').html(startElemPos+' - '+endElemPos);
+      $('#totalResults').html(totalRecipes);
+
+      // Iterate over the collection of data
+      $.each(pagedResp._embedded.recipes, function (index, recipe) {
+        // Add a row to the Product table
+        recipeAddRow(recipe);
+      });
+    }
+
+    // Add Product row to <table>
+    function recipeAddRow(recipe) {
+
+      // Append row to recipeList <div>
+      var searchResultRow = $.parseHTML(recipeBuildRow(recipe));
+      $(searchResultRow).find('button[name="edit"]').first().click(function(){
+        editRecipe(recipe._links.self.href);
+      });
+      $(searchResultRow).find('button[name="delete"]').first().click(function(){
+        deleteRecipe(recipe._links.self.href);
+      });
+
+      $("#recipeList").append(searchResultRow);
+    }
+
+    // Build a <tr> for a row of table data
+    function recipeBuildRow(recipe) {
+
+      var veganSec = '';
+
+      if(recipe.vegetarian == true){
+        veganSec = '<span class="badge bg-success rounded-pill">veg</span>';
+      }
+
+      var htmlRow =  '<div class="bg-white p-3 rounded mt-2">' +
+                '<div class="row">' +
+                    '<div class="col-md-3">' +
+                        '<div class="d-flex flex-column justify-content-center align-items-center icon-container bg-secondary text-white mb-2"><i class="fas fa-utensils fa-5x mb-3 mt-5"></i><span class="mb-4">No image</span></div>' +
+                    '</div>' +
+                    '<div class="col-md-6 border-end">' +
+                        '<div class="listing-title">' +
+                            '<h5>'+recipe.title+'</h5>' +
+                        '</div>' +
+                        '<div class="d-flex flex-row align-items-center">' +
+                            '<div class="d-flex flex-row align-items-center ratings">' +
+                                '<span class="me-4 text-black-50 number-ratings">Serves ' +recipe.portion+ ' people</span>' +
+                                veganSec+
+                            '</div>' +
+                        '</div>' +
+                        '<div class="description">' +
+                            '<p>'+recipe.desc+'<br></p>' +
+                        '</div>' +
+                        '<div class="tags mb-2">'+ ingredientsList(recipe.ingredients) +'</div>' +
+                    '</div>' +
+                    '<div class="d-flex col-md-3">' +
+                        '<div class="d-flex flex-column justify-content-start user-profile w-100">' +
+                            '<div class="d-flex user mb-auto">' +
+                                '<button type="button" name="edit" class="btn btn-outline-secondary btn-sm me-2">' +
+                                    '<i class="bi bi-pencil-square"></i>' +
+                                    'Edit' +
+                                '</button>' +
+                                '<button type="button" name="delete" class="btn btn-outline-secondary btn-sm">' +
+                                    '<i class="bi bi-x-circle"></i>' +
+                                    'Delete' +
+                                '</button>' +
+                            '</div>' +
+                            '<div class="d-flex text-secondary fw-lighter">' +
+                                new Date(recipe.createdDate).toLocaleString() +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>'
+
+      return htmlRow;
+    }
+
+    function ingredientsList(ingredients){
+      var htmlIngredients = '';
+
+      $.each(ingredients, function (index, ingredient) {
+        htmlIngredients += ingredientAdd(ingredient);
+      });
+
+      return htmlIngredients;
+    }
+
+    function ingredientAdd(ingredient) {
+
+        var htmlIngredient = '<span>' +ingredient.name+ '</span>';
+
+        return htmlIngredient;
+    }
+
+    // Handle exceptions from AJAX calls
+    function handleException(request, message, error) {
+      var msg = "";
+
+      msg += "Code: " + request.status + "\n";
+      msg += "Text: " + request.statusText + "\n";
+      if (request.responseJSON != null) {
+        msg += "Message" + request.responseJSON.Message + "\n";
+      }
+
+      alert(msg);
+    }
+  </script>
+</html>
