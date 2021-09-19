@@ -98,9 +98,22 @@ Once all the pods are in the running state, execute below command
 
 `kubectl get ingress`
 
-Copy the IP address from the output of the above command
+Output would look something like below.
 
-Paste the IP address in your browser. You will be able to see the landing page of the app.
+```
+NAME                 CLASS    HOSTS   ADDRESS        PORTS   AGE
+recipebook-ingress   <none>   *       <ip-address>   80      4h21m
+```
+
+Copy the IP address from the above output and paste the IP address in your browser. You will be able to see the landing page of the app.
+
+`http://<ip-address>`
+
+## API Documentation
+Paste below URL into your browser
+
+`http://<ip-address>/swagger-ui/`
+
 
 ## App deployment architecture
 
