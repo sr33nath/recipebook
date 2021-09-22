@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ingredient {
     @TextIndexed
     private String name;
-    private int amount;
+    private String amount;
     private String uom;
 
     public String getName() {
@@ -18,11 +18,11 @@ public class Ingredient {
         this.name = name;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
