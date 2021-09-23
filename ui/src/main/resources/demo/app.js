@@ -43,18 +43,18 @@
         $('#searchBtn').click(function () {
             var searchStr = encodeURIComponent($('#search').val());
             var searchType = $('#searchParam').find(":selected").val();
-            var searchResourceUrl = 'http://localhost:9000/api/recipes/search/findAll?text=';
+            var searchResourceUrl = '/api/recipes/search/findAll?text=';
 
             if(searchType == 'instructions'){
-                searchResourceUrl='http://localhost:9000/api/recipes/search/findAllByInstructions?instructions=';
+                searchResourceUrl='/api/recipes/search/findAllByInstructions?instructions=';
             } else if(searchType == 'ingredients'){
-                searchResourceUrl='http://localhost:9000/api/recipes/search/findAllByIngredientsName?ingredientName=';
+                searchResourceUrl='/api/recipes/search/findAllByIngredientsName?ingredientName=';
             } else if(searchType == 'portion'){
-                searchResourceUrl='http://localhost:9000/api/recipes/search/findAllByPortion?portion=';
+                searchResourceUrl='/api/recipes/search/findAllByPortion?portion=';
             } else if(searchType == 'createdBefore'){
-                searchResourceUrl='http://localhost:9000/api/recipes/search/findAllByCreatedDateBefore?date=';
+                searchResourceUrl='/api/recipes/search/findAllByCreatedDateBefore?date=';
             } else if(searchType == 'createdAfter'){
-                searchResourceUrl='http://localhost:9000/api/recipes/search/findAllByCreatedDateAfter?date=';
+                searchResourceUrl='/api/recipes/search/findAllByCreatedDateAfter?date=';
             }
 
             recipeList(searchResourceUrl+searchStr);
@@ -67,7 +67,7 @@
     });
 
     function defaultSearch(){
-        recipeList('http://localhost:9000/api/recipes');
+        recipeList('/api/recipes');
     }
 
    function repeatSearch(){
@@ -118,7 +118,7 @@
     function resetRecipeForm(){
             $('#action').val('create');
             $('#modelHeading').val('New Recipe');
-            $('#submitUrl').val('http://localhost:9000/api/recipes');
+            $('#submitUrl').val('/api/recipes');
             $('#title').val('');
             $('#desc').val('');
             $('#portion').val('');
